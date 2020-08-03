@@ -1,3 +1,5 @@
+import { getTest } from "../../api/api.js"
+
 //index.js
 //获取应用实例
 const app = getApp()
@@ -15,7 +17,9 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: async function () {
+    let a = await getTest()
+    console.log(a)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

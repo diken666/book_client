@@ -1,3 +1,5 @@
+const app = getApp()
+
 const request = (url, options) => {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -8,11 +10,14 @@ const request = (url, options) => {
         'Content-Type': 'application/json; charset=UTF-8',
         'token': 'x-token'  // 看自己是否需要
       },
-      success(request) {
-        if (request.data.code === 2000) {
-          resolve(request.data)
+      success(res) {
+        if (res.data.code === 1) {
+          resolve(res.data)
         } else {
-          reject(request.data)
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
         }
       },
       fail(error) {
