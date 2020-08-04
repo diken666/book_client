@@ -18,10 +18,15 @@ const request = (url, options) => {
             title: res.data.msg,
             icon: "none"
           })
+          resolve(res.data)
         }
       },
       fail(error) {
-        reject(error.data)
+        wx.showToast({
+          title: "网络错误",
+          icon: "none"
+        })
+        // reject(error.data)
       }
     })
   })

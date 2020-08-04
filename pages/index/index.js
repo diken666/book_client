@@ -54,5 +54,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  goLogin: function() {
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
   }
 })
