@@ -32,7 +32,8 @@ Page({
   // 用户登录
   async login(code) {
     let res = await userLogin({
-      code
+      code,
+      showToast: true
     })
     console.log(res)
   }

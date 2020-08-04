@@ -12,6 +12,12 @@ const request = (url, options) => {
       },
       success(res) {
         if (res.data.code === 1) {
+          if (options.data.showToast && res.data.msg) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: "none"
+            })
+          }
           resolve(res.data)
         } else {
           wx.showToast({
