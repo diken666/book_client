@@ -1,4 +1,7 @@
 import { userLogin } from "../../api/api.js"
+import { setStorage, toast } from "../../utils/util.js"
+
+const app = getApp()
 
 Page({
 
@@ -6,19 +9,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    code: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(123)
     let _this = this
     wx.login({
       success(res) {
-        console.log(res.code)
-        _this.login(res.code)
+        _this.code = res.code
       },
       fail() {
         wx.showToast({
@@ -30,11 +32,26 @@ Page({
   },
 
   // 用户登录
-  async login(code) {
+  async login(name, avatar) {
     let res = await userLogin({
-      code,
+      code: this.code,
+      name,
+      avatar,
       showToast: true
     })
     console.log(res)
-  }
+  },
+
+  // 授权获取用户头像和昵称
+  getUserInfo(e) {
+    console.log(e)
+    let userInfo = e.detail.userInfo
+    if (userInfo) {
+      setStorage("userInfo", userInfo)
+      setStorage("token", this.code)
+      this.login(userInfo.nickName, userInfo.avatarUrl)
+    } else {
+      toast("授权失败")
+    }
+  },
 })

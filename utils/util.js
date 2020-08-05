@@ -14,6 +14,38 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 提示
+const toast = (msg, during) => {
+  wx.showToast({
+    title: msg,
+    icon: "none",
+    during: during || 1500
+  })
+}
+
+// 存储
+const setStorage = (key, data) => {
+  console.log(122)
+  try {
+    wx.setStorageSync(key, data)
+  } catch (e) {
+    toast("存储失败")
+  }
+  wx.setStorageSync(key, data)
+}
+
+const getStorage = (key) => {
+  try {
+    return wx.getStorageSync(key)
+  } catch (e) {
+    toast("获取失败")
+    return null
+  }
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  setStorage,
+  getStorage,
+  toast
 }

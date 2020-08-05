@@ -1,3 +1,4 @@
+import { getStorage } from "./util.js"
 const app = getApp()
 
 const request = (url, options) => {
@@ -8,7 +9,7 @@ const request = (url, options) => {
       data: options.method === 'GET' ? options.data : JSON.stringify(options.data),
       header: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'token': 'x-token'  // 看自己是否需要
+        'token': getStorage("token") || ""
       },
       success(res) {
         if (res.data.code === 1) {
