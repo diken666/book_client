@@ -25,7 +25,6 @@ const toast = (msg, during) => {
 
 // 存储
 const setStorage = (key, data) => {
-  console.log(122)
   try {
     wx.setStorageSync(key, data)
   } catch (e) {

@@ -1,5 +1,5 @@
 <view>
   <view class="userinfo">
-    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录授权</button>
   </view>
 </view>
