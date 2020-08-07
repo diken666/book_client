@@ -36,8 +36,7 @@ Page({
     let res = await userLogin({
       code: this.code,
       name,
-      avatar,
-      showToast: true
+      avatar
     })
     console.log(res)
   },

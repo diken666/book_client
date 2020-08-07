@@ -1,4 +1,4 @@
-import { getStorage } from "./util.js"
+import { getStorage, toast } from "./util.js"
 const app = getApp()
 
 const request = (url, options) => {
@@ -13,26 +13,19 @@ const request = (url, options) => {
       },
       success(res) {
         if (res.data.code === 1) {
-          if (options.data.showToast && res.data.msg) {
-            wx.showToast({
-              title: res.data.msg,
-              icon: "none"
-            })
+          if (res.data.msg) {
+            toast(res.data.msg)
           }
           resolve(res.data)
         } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: "none"
-          })
+          if (res.data.msg) {
+            toast(res.data.msg)
+          }
           resolve(res.data)
         }
       },
       fail(error) {
-        wx.showToast({
-          title: "网络错误",
-          icon: "none"
-        })
+        toast("网络错误")
         // reject(error.data)
       }
     })
