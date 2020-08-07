@@ -23,16 +23,16 @@ const toast = (msg, during) => {
   })
 }
 
-// 存储
+// 向缓存中存储
 const setStorage = (key, data) => {
   try {
     wx.setStorageSync(key, data)
   } catch (e) {
     toast("存储失败")
   }
-  wx.setStorageSync(key, data)
 }
 
+// 从缓存中读取
 const getStorage = (key) => {
   try {
     return wx.getStorageSync(key)

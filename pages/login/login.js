@@ -1,4 +1,4 @@
-import { userLogin } from "../../api/api.js"
+import { userLogin, createCircle} from "../../api/api.js"
 import { setStorage, toast } from "../../utils/util.js"
 
 const app = getApp()
@@ -53,4 +53,13 @@ Page({
       toast("授权失败")
     }
   },
+
+  // 创建圈子
+  async createMyCircle() {
+    let res = await createCircle({
+      circle_name: "test",
+      circle_avatar: "testAvatar"
+    })
+    console.log(res)
+  }
 })

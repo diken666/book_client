@@ -17,6 +17,11 @@ const request = (url, options) => {
             toast(res.data.msg)
           }
           resolve(res.data)
+        } else if (res.data.code === 401) {
+          // 重定向至登录页
+          wx.navigateTo({
+            url: './pages/login/login',
+          })
         } else {
           if (res.data.msg) {
             toast(res.data.msg)
