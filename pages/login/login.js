@@ -38,6 +38,9 @@ Page({
       name,
       avatar
     })
+    if (res.code === 1) {
+      setStorage("token", res.data.token)
+    }
     console.log(res)
   },
 
@@ -47,7 +50,6 @@ Page({
     let userInfo = e.detail.userInfo
     if (userInfo) {
       setStorage("userInfo", userInfo)
-      setStorage("token", this.code)
       this.login(userInfo.nickName, userInfo.avatarUrl)
     } else {
       toast("授权失败")
